@@ -1,0 +1,23 @@
+<h3>Result</h3>
+<table border="1" width="50%">
+  <tr>
+    <th>Name</th>
+    <th>Result</th>
+  </tr>
+  <tr>
+    <td><%= @randomnumber.name %></td>
+    <td align="center"><%= @randomnumber.number %></td>
+  </tr>
+</table>
+
+<br/><br/>
+
+<table width="50%">
+  <tr>
+    <td align="center"><%= button_to('See Results in Wavefront Over Time', 'http://www.example.com') %></td>
+    <td align="center"><%= button_to('See Results in Wavefront as a Table', 'http://www.example.com') %></td>
+  </tr>
+</table>
+
+<br/><br/>
+<%= link_to 'Home', randomnumbers_path %>

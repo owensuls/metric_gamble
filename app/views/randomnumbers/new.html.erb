@@ -1,0 +1,18 @@
+<h1>Play</h1>
+
+<%= form_for :randomnumber, url: randomnumbers_path do |f| %>
+  <p>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </p>
+
+  <p>
+    <%= f.hidden_field :number, :value => rand(10000) %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
+
+<%= link_to 'Home', randomnumbers_path %>

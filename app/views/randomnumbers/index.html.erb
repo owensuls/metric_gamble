@@ -1,0 +1,35 @@
+<%= stylesheet_link_tag "randomnumbers" %>
+
+<h1>Welcome to the Monitoring Demo Game!</h1>
+
+<!-- <p class="test">Test</p> -->
+
+<table>
+  <tr>
+    <td colspan="2" align="center"><%= button_to 'Play!', new_randomnumber_path, method: "get" %></td>
+  </tr>
+  <tr>
+  <br/>
+    <td><%= button_to('See Results in Wavefront Over Time', 'http://www.example.com') %></td>
+    <td><%= button_to('See Results in Wavefront as a Table', 'http://www.example.com') %></td>
+  </tr>
+</table>
+<br/>
+
+<h3>Top 10 Results</h3>
+<table border="1" width="25%">
+  <tr>
+    <th>Name</th>
+    <th>Result</th>
+    <th>Details</th>
+  </tr>
+
+  <% @randomnumbers.each do |randomnumber| %>
+    <tr>
+          <td><%= randomnumber.name %></td>
+          <td><%= randomnumber.number %></td>
+          <td align="center"><%= link_to 'Show', randomnumber_path(randomnumber) %></td>
+    </tr>
+  <% end %>
+<!-- <%= image_tag('CaesarPalace1.jpeg') %> -->
+</table>
