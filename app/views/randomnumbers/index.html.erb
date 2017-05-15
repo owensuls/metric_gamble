@@ -2,10 +2,10 @@
 
 <h1>Welcome to the Monitoring Demo Game!</h1>
 
-<!-- <p class="test">Test</p> -->
+<p class="test">Test</p>
 
 <table>
-  <tr>
+  <tr
     <td colspan="2" align="center"><%= button_to 'Play!', new_randomnumber_path, method: "get" %></td>
   </tr>
   <tr>
@@ -33,3 +33,8 @@
   <% end %>
 <!-- <%= image_tag('CaesarPalace1.jpeg') %> -->
 </table>
+
+<div class="container">
+  <%= yield %>
+  <%= render 'layouts/footer' %>
+</div>

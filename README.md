@@ -15,8 +15,8 @@ The logic is as follows:
 - Person with the data point whose value is highest during the event wins a prize.
 
 * Run
-/$ cd /Applications/prometheus-1.6.2.darwin-amd64/
-/Applications/prometheus-1.6.2.darwin-amd64$ ./prometheus -config.file=prometheus.yml
+- /$ cd /Applications/prometheus-1.6.2.darwin-amd64/
+- /Applications/prometheus-1.6.2.darwin-amd64$ ./prometheus -config.file=prometheus.yml
 
 * Ruby version
 
