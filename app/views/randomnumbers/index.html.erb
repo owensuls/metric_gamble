@@ -1,40 +1,62 @@
 <%= stylesheet_link_tag "randomnumbers" %>
+<!-- <%= image_tag('CaesarPalace1.jpeg') %> -->
 
-<h1>Welcome to the Monitoring Demo Game!</h1>
+<div class="container theme-showcase" role="main">
 
+<div class="page-header">
+  <h2>Welcome to the Monitoring Demo Game!</h2>
+  <p>Play as often as you like. Highest score wins a prize!</p>
+</div>
+
+<!--
 <p class="test">Test</p>
+  -->
 
+<div class="container">
 <table>
-  <tr
-    <td colspan="2" align="center"><%= button_to 'Play!', new_randomnumber_path, method: "get" %></td>
+  <tr>
+    <td colspan="2" align="center"><%= button_to 'Play!', new_randomnumber_path, method: "get", :class => "btn btn-primary" %></td>
+    <br/>
   </tr>
   <tr>
-  <br/>
-    <td><%= button_to('See Results in Wavefront Over Time', 'http://www.example.com') %></td>
-    <td><%= button_to('See Results in Wavefront as a Table', 'http://www.example.com') %></td>
+    <td><%= button_to('See Results in Wavefront Over Time', 'http://www.example.com', :class => "btn btn-sm btn-success") %></td>
+    <td><%= button_to('See Results in Wavefront as a Table', 'http://www.example.com', :class => "btn btn-sm btn-success") %></td>
   </tr>
 </table>
-<br/>
+</div>
 
-<h3>Top 10 Results</h3>
-<table border="1" width="25%">
-  <tr>
-    <th>Name</th>
-    <th>Result</th>
-    <th>Details</th>
-  </tr>
+<div class="page-header">
+  <h3>Top 10 Results</h3>
+</div>
 
-  <% @randomnumbers.each do |randomnumber| %>
-    <tr>
+<div class="row">
+<div class="col-md-6">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Result</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @i = 1 %>
+      <% @randomnumbers.each do |randomnumber| %>
+        <tr>
+          <td><% @i %></td>
           <td><%= randomnumber.name %></td>
           <td><%= randomnumber.number %></td>
           <td align="center"><%= link_to 'Show', randomnumber_path(randomnumber) %></td>
-    </tr>
-  <% end %>
-<!-- <%= image_tag('CaesarPalace1.jpeg') %> -->
-</table>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+</div>
 
-<div class="container">
+<div class="container center">
   <%= yield %>
   <%= render 'layouts/footer' %>
 </div>
+</div>  <!-- Container -->
