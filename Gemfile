@@ -58,3 +58,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # Other
 gem 'prometheus-client'
 gem 'bootstrap-sass', '>= 3.3.6'
+gem 'roman-numerals', '~> 0.3.0'

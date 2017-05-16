@@ -2,7 +2,8 @@ require 'prometheus/client'
 
 class RandomnumbersController < ApplicationController
   def index
-    @randomnumbers = Randomnumber.order('number DESC').limit(10)
+    @randomnumbers = Randomnumber.order('number DESC').limit(8)
+    @counter = 0
   end
 
   def show
@@ -21,8 +22,6 @@ class RandomnumbersController < ApplicationController
     else
       #
     end
-
-    @requests.set({name: "Owen"}, rand(10000))
 
     @randomnumber.save
     redirect_to @randomnumber

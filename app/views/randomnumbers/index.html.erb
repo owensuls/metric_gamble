@@ -1,32 +1,47 @@
 <%= stylesheet_link_tag "randomnumbers" %>
 <!-- <%= image_tag('CaesarPalace1.jpeg') %> -->
 
-<div class="container theme-showcase" role="main">
+<!-- Fixed navbar -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Monitoring Demo Game</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="randomnumbers/new">Play</a></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</nav>
 
+<div class="container theme-showcase" role="main">
 <div class="page-header">
-  <h2>Welcome to the Monitoring Demo Game!</h2>
   <p>Play as often as you like. Highest score wins a prize!</p>
 </div>
 
-<!--
-<p class="test">Test</p>
-  -->
-
-<div class="container">
+<div class="page-header">
 <table>
   <tr>
-    <td colspan="2" align="center"><%= button_to 'Play!', new_randomnumber_path, method: "get", :class => "btn btn-primary" %></td>
+    <td colspan="2" align="center"><%= button_to 'Play !', new_randomnumber_path, method: "get", :class => "btn btn-lg btn-primary" %></td>
     <br/>
   </tr>
   <tr>
-    <td><%= button_to('See Results in Wavefront Over Time', 'http://www.example.com', :class => "btn btn-sm btn-success") %></td>
-    <td><%= button_to('See Results in Wavefront as a Table', 'http://www.example.com', :class => "btn btn-sm btn-success") %></td>
+    <td><%= button_to('See Results in Wavefront Over Time', 'http://www.example.com', :class => "btn btn-sm btn-success button") %></td>
+    <td><%= button_to('See Results in Wavefront as a Table', 'http://www.example.com', :class => "btn btn-sm btn-success button") %></td>
   </tr>
 </table>
 </div>
 
 <div class="page-header">
-  <h3>Top 10 Results</h3>
+  <h4>Leaderboard</h4>
 </div>
 
 <div class="row">
@@ -41,13 +56,12 @@
       </tr>
     </thead>
     <tbody>
-      <% @i = 1 %>
       <% @randomnumbers.each do |randomnumber| %>
         <tr>
-          <td><% @i %></td>
+          <td><%= RomanNumerals.to_roman(@counter = @counter + 1) %></td>
           <td><%= randomnumber.name %></td>
           <td><%= randomnumber.number %></td>
-          <td align="center"><%= link_to 'Show', randomnumber_path(randomnumber) %></td>
+          <td align="center"><%= link_to('Show', randomnumber_path(randomnumber)) %></td>
         </tr>
       <% end %>
     </tbody>
@@ -55,7 +69,7 @@
 </div>
 </div>
 
-<div class="container center">
+<div class="container">
   <%= yield %>
   <%= render 'layouts/footer' %>
 </div>
