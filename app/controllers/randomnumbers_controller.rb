@@ -1,6 +1,8 @@
 require 'prometheus/client'
 
 class RandomnumbersController < ApplicationController
+    @@requests = Prometheus::Client::Counter.new(:demo, 'Counter\'s gotta count, friendo')
+
   def index
     @randomnumbers = Randomnumber.order('number DESC').limit(8)
     @counter = 0
@@ -10,18 +12,17 @@ class RandomnumbersController < ApplicationController
     @randomnumber = Randomnumber.find(params[:id])
   end
 
-  def new
-  end
-
   def create
     @randomnumber = Randomnumber.new(randomnumber_params)
 
-    if @requests.nil?
-      prometheus = Prometheus::Client.registry
-      @requests = prometheus.gauge(:demo_metric_gamble_result, 'Random number selected for this users turn.')
-    else
-      #
+    prometheus = Prometheus::Client.registry
+
+    begin
+      prometheus.register(@@requests)
+    rescue Prometheus::Client::Registry::AlreadyRegisteredError => e
     end
+
+    @@requests.increment service: 'Demo'
 
     @randomnumber.save
     redirect_to @randomnumber

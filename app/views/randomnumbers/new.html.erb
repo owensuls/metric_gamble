@@ -1,5 +1,34 @@
-<div class="container theme-showcase" role="main">
-  <h1>Play</h1>
+<%= stylesheet_link_tag "randomnumbers" %>
+
+<!-- Fixed navbar -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Monitoring Demo Game</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li><%= link_to('Home', root_path, method: "get") %></li>
+        <li><%= link_to('Play', new_randomnumber_path, method: "get") %></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</nav>
+
+<div class="container theme-showcase zero-margin" role="main">
+  <div class="page-header">
+    <table>
+      <tr>
+        <td><h4></h4></td>
+      </tr>
+    </table>
+    </div>
 
 <%= form_for :randomnumber, url: randomnumbers_path do |f| %>
   <p>
@@ -11,10 +40,13 @@
     <%= f.hidden_field :number, :value => rand(10000) %>
   </p>
 
-  <p>
+  <p class: "btn btn-lg btn-primary">
     <%= f.submit %>
   </p>
 <% end %>
 
-<%= link_to 'Home', randomnumbers_path %>
+<div class="container">
+  <%= yield %>
+  <%= render 'layouts/footer' %>
 </div>
+</div>  <!-- Container -->
