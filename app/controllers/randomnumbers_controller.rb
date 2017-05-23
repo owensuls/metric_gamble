@@ -1,11 +1,11 @@
 require 'prometheus/client'
 
 class RandomnumbersController < ApplicationController
-    @@requests = Prometheus::Client::Counter.new(:demo_gamble_result, 'Result of playing Metric Gamble app.')
+    @@result = Prometheus::Client::Gauge.new(:demo_gamble_result, 'Result of playing Metric Gamble app.')
     @@users_inthissession = Prometheus::Client::Counter.new(:demo_gamble_users_inthisession, 'Count of users in this session.')
 
   def index
-    @randomnumbers = Randomnumber.order('number DESC').limit(8)
+    @randomnumbers = Randomnumber.order('number DESC').limit(5)
     @counter = 0
   end
 
@@ -19,7 +19,7 @@ class RandomnumbersController < ApplicationController
     prometheus = Prometheus::Client.registry
 
     begin
-      prometheus.register(@@requests)
+      prometheus.register(@@result)
       prometheus.register(@@users_inthissession)
     rescue Prometheus::Client::Registry::AlreadyRegisteredError => e
     end
@@ -30,7 +30,7 @@ class RandomnumbersController < ApplicationController
       name = 'Anonymous'
     end
 
-    @@requests.increment name: name
+    @@result.set({name: name}, params[:randomnumber][:number].to_i)
     @@users_inthissession.increment
 
     @randomnumber.save

@@ -1,23 +1,58 @@
-<h3>Result</h3>
-<table border="1" width="50%">
+<%= stylesheet_link_tag "randomnumbers" %>
+
+<!-- Fixed navbar -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <%= link_to('5th Floor Block Party!', root_path, method: "get", :class => "navbar-brand") %>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li><%= link_to('Home', root_path, method: "get") %></li>
+        <li><%= link_to('Play', new_randomnumber_path, method: "get") %></li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</nav>
+
+<div class="container theme-showcase" role="main">
+  <div class="page-header">
+    <table>
+      <tr>
+        <td><h4>Result</h4></td>
+      </tr>
+    </table>
+    </div>
+
+<div class="row">
+  <div class="col-md-6">
+      <table class="table table-striped">
   <tr>
     <th>Name</th>
     <th>Result</th>
   </tr>
   <tr>
     <td><%= @randomnumber.name %></td>
-    <td align="center"><%= @randomnumber.number %></td>
+    <td><%= @randomnumber.number %></td>
   </tr>
 </table>
 
-<br/><br/>
-
-<table width="50%">
+<table>
   <tr>
-    <td align="center"><%= button_to('See Results in Wavefront Over Time', 'http://www.example.com') %></td>
-    <td align="center"><%= button_to('See Results in Wavefront as a Table', 'http://www.example.com') %></td>
+    <td><%= link_to('See Results in Wavefront', 'https://workday.wavefront.com/u/r6dJpjvtw7', :class => "btn btn-sm btn-success button") %></td>
   </tr>
 </table>
+</div>
+</div>
 
-<br/><br/>
-<%= link_to 'Home', randomnumbers_path %>
+<div class="container">
+  <%= yield %>
+  <%= render 'layouts/footer' %>
+</div>
+</div>  <!-- Container -->

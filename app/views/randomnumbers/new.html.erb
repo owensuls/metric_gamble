@@ -10,7 +10,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Monitoring Demo Game</a>
+      <%= link_to('5th Floor Block Party!', root_path, method: "get", :class => "navbar-brand") %>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
@@ -32,7 +32,7 @@
 
 <%= form_for :randomnumber, url: randomnumbers_path do |f| %>
   <p>
-    <%= f.label :name %><br>
+    <%= f.label "Your Full Name" %><br>
     <%= f.text_field :name %>
   </p>
 
@@ -40,8 +40,8 @@
     <%= f.hidden_field :number, :value => rand(10000) %>
   </p>
 
-  <p class: "btn btn-lg btn-primary">
-    <%= f.submit %>
+  <p>
+    <%= f.submit "Go!", :class => "btn btn-small btn-primary" %>
   </p>
 <% end %>
 
