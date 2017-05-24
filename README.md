@@ -7,24 +7,26 @@ try to win a prize. This game is intended to demonstrate usage of the Prometheus
  the Prometheus server to scrape metrics from the client, and a Wavefront Proxy to forward metrics to
  Wavefront.
 
-* Enter their name.
-* Click a button that selects a random number.
-* Causes a data point to be sent to Wavefront.
+How it works:
+* Application prompts user to enter their name.
+* User clicks a button that selects a random number.
+* A metric data point is emitted where:
   * Value of the data point is the random number.
-  * "Name" point tag is included with the data point sent.
+  * "Name" point tag is included with the data point.
   * Value of the "Name" point tag is that entered by the user.
+* Prometheus server subsequently scrapes this metric and forwards it to Wavefront.
 * Person with the data point whose value is highest during the event wins a prize.
 
 ## Running the application
 The following instructions make some assumptions about where stuff is installed.
 
 * cd /Applications/wavefront; nohup java -jar ./wavefront-push-agent-3.24-1.jar -f ./wavefront.conf >> ./wavefront.log 2>&1 &
-* cd ~/3rdparty_src$ ./wavefront_prometheus_receiver
+* cd Folder_Where_Wavefront_Prometheus_Receiver_Installed; ./wavefront_prometheus_receiver
 * cd /Applications/prometheus-1.6.2.darwin-amd64/; ./prometheus -config.file=prometheus.yml
-* cd <home folder of this app>; bin/rails server
+* cd Home_Folder_For_This_App; bin/rails server
 
 ## Ruby version used
-2.4.0p0
+2.4.0
 
 ## Installing and configuring dependencies
 * Prometheus Server:
